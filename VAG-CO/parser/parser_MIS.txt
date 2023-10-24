@@ -1,0 +1,12 @@
+python PPO_configuration.py --IsingMode PROTEINS --temps 0.1 --N_anneal 10000 --GPUs 2 --time_horizon 35 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 15 --mini_Hb 15 --EnergyFunction MIS --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 124 125 --n_GNN_layers 3 --n_sample_spins 5 
+
+python PPO_configuration.py --IsingMode COLLAB --temps 0.05 --N_anneal 2000 --GPUs 3 --time_horizon 25 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MIS --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.001 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5
+
+python PPO_configuration.py --IsingMode ENZYMES --temps 0.07 --N_anneal 6000 --GPUs 4 --time_horizon 25 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 15 --mini_Nb 15 --mini_Hb 15 --EnergyFunction MIS --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 124 125 123 --n_GNN_layers 3 --n_sample_spins 5 
+
+python PPO_configuration.py --IsingMode IMDB-BINARY --temps 0.05 --N_anneal 2000 --GPUs 4 --time_horizon 5 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MIS --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.001 --message_nh 30 --seed 123 124 125 --n_GNN_layers 4 --n_sample_spins 5
+
+python PPO_configuration.py --IsingMode MUTAG --temps 0.05 --N_anneal 2000 --GPUs 5 --time_horizon 7 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MIS --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.001 --message_nh 30 --seed 123 124 125 --n_GNN_layers 3 --n_sample_spins 5
+
+python PPO_configuration.py --IsingMode RB_iid_small --temps 0.5 0.8 --N_anneal 4000 --GPUs 0 1 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MIS --n_val_workers 30 --encode_node_features 80 --lr 0.001 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 8
+

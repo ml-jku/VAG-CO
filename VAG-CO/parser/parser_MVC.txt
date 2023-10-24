@@ -1,0 +1,44 @@
+python PPO_configuration.py --IsingMode COLLAB --temps 0.05  --N_anneal 15000 --GPUs 2 --time_horizon 35 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 6 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --message_nh 30 --seed 125 --encode_edge_features 30 --encode_node_features 40 --n_GNN_layers 3
+
+
+python PPO_configuration.py --IsingMode IMDB-BINARY --temps 0.05 --N_anneal 2000 --GPUs 4 --time_horizon 5 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.001 --message_nh 30 --seed 123 124 125 --n_GNN_layers 3 --n_sample_spins 5
+
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.05 --N_anneal 4000 --GPUs 0 1 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --project_name "AnnealAbl"
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.05 0.2 --N_anneal 4000 --GPUs 0 1 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine linear --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --project_name "test"
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.05 --N_anneal 2000 --GPUs 0 1 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 4 --n_sample_spins 5 --project_name "AnnealAbl" --GNN_backbone GIN --masking False
+
+### const temperature
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.02 0.01 0.005 --N_anneal 0 --N_warmup 2400 --GPUs 1 2 3 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --project_name "AnnealAbl" --GNN_backbone GIN --project_name _const_temp
+
+### frac cos Annealing
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.05 --N_anneal 2000 --GPUs 3 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --GNN_backbone GIN --project_name _anneal_temp
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.1 0.06 --N_anneal 2000 --GPUs 1 3 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --GNN_backbone GIN --project_name _anneal_temp
+
+### linear Annealing
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.16 0.08 0.02 --N_anneal 2000 --GPUs 2 --time_horizon 20 --batch_epochs 2 --AnnealSchedule linear --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --GNN_backbone GIN --project_name _lin_anneal_temp
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.02 --N_anneal 2000 --GPUs 1 2 --time_horizon 20 --batch_epochs 2 --AnnealSchedule linear --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0001 0.001 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --GNN_backbone GIN --project_name _lin_anneal_temp
+
+
+### more expressive network
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.3 --N_anneal 4000 --GPUs 1 --time_horizon 10 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --encode_node_features 40 --encode_edge_features 40 --lr 0.005 --message_nh 40 --seed 123 --n_GNN_layers 4 --n_sample_spins 10  --GNN_backbone MPNN_nonlinear --project_name _GraphTokenization_MPNN_k=10
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.1 --N_warmup 200 --N_anneal 2000 --GPUs 0 1 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --encode_node_features 40 --encode_edge_features 40 --lr 0.0005 0.001 0.002 --message_nh 40 --seed 123 --n_GNN_layers 4 --n_sample_spins 5  --GNN_backbone MPNN_nonlinear --project_name _GraphTokenization_MPNN_k=5
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.01 --N_warmup 80 --N_anneal 800 --GPUs 1 --time_horizon 50 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --encode_node_features 40 --encode_edge_features 40 --lr 0.001 --message_nh 40 --seed 123 --n_GNN_layers 4 --n_sample_spins 2  --GNN_backbone MPNN_nonlinear --project_name  _GraphTokenization_MPNN_k=2
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.05 0.02 --N_warmup 40 --N_anneal 400 --GPUs 3 --time_horizon 100 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --encode_node_features 40 --encode_edge_features 40 --lr 0.001 --message_nh 40 --seed 123 --n_GNN_layers 4 --n_sample_spins 2  --GNN_backbone MPNN_nonlinear --project_name  _GraphTokenization_MPNN_k=1
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.01 --N_warmup 40 --N_anneal 400 --GPUs 1 --time_horizon 100 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --encode_node_features 40 --encode_edge_features 40 --lr 0.003 0.0005 --message_nh 40 --seed 123 --n_GNN_layers 4 --n_sample_spins 2  --GNN_backbone MPNN_nonlinear --project_name  _GraphTokenization_MPNN_k=1
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.005 --N_warmup 40 --N_anneal 400 --GPUs 1 --time_horizon 100 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 50 --encode_node_features 40 --encode_edge_features 40 --lr 0.001 --message_nh 40 --seed 123 --n_GNN_layers 4 --n_sample_spins 1  --GNN_backbone MPNN_nonlinear --project_name  _GraphTokenization_MPNN_k=1
+
+
+### ablation on Pruning
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.02 --N_anneal 2000 --GPUs 1 2 --time_horizon 20 --batch_epochs 2 --AnnealSchedule linear --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 6 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005, 0.003 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --GNN_backbone GIN --project_name no_pruning --no-pruning
+
+python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.04 --N_anneal 2000 --GPUs 3 --time_horizon 20 --batch_epochs 2 --AnnealSchedule linear --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 6 --mini_Hb 5 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.001 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 --GNN_backbone GIN --project_name no_pruning --no-pruning
