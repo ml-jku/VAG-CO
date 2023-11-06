@@ -19,15 +19,8 @@ args = parser.parse_args()
 ### TODO add TWITTER ZIP file
 
 if(__name__ == "__main__"):
-    import os
-    import socket
-    if(args.licence == "yes"):
-        hostname = socket.gethostname()
-        print(os.environ["GRB_LICENSE_FILE"])
-        os.environ["GRB_LICENSE_FILE"] = f"/system/user/sanokows/gurobi_{hostname}.lic"
     ### TODO first set up your gurobi licence before running this code. Otherwise large CO Problem Instances cannot be solved by gurobi!
-    else:
-        pass
+
 
     if(args.dataset in TU_datasets):
         print("Solving dataset with gurobi")
@@ -35,7 +28,6 @@ if(__name__ == "__main__"):
         print("Translating dataet into spin formulation")
         saveHamiltonianGraphs.solve(args.dataset, args.problem, seeds = args.seed)
     elif(args.dataset in RB_datasets):
-        ### TODO add size as an argument
         if(args.problem == "MIS"):
             GenerateRB_graphs.create_and_solve_graphs_MIS(args.dataset, parent = False, EnergyFunction= args.problem, modes = args.modes, seeds = args.seed)
             saveHamiltonianGraphs.solve(args.dataset, args.problem, modes = args.modes, seeds = args.seed)
@@ -50,7 +42,6 @@ if(__name__ == "__main__"):
         GenerateRRGs.make_dataset(args.dataset,parent = False, seeds = args.seed, modes = args.modes)
         saveHamiltonianGraphs.solve(args.dataset, args.problem, seeds = args.seed, modes = args.modes)
     elif(args.dataset in BA_datasets):
-        ### TODO add train solving back again!
         GenerateBAGraphs.create_and_solve_graphs_MaxCut(seeds=args.seed,  parent = False)
         saveHamiltonianGraphs.solve(args.dataset, args.problem, seeds = args.seed)
     else:
