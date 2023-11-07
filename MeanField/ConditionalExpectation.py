@@ -18,16 +18,6 @@ import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 
 
-"""
-Conditional Expectation
-
-1. Sort spins by probability and set the most probable one
-2. Calculate expected energy by sampling N states where the set spin is fixed (for both -1 and 1) -> use better for that spin
-3. Set the spin with the next highest probability
-4. Calculate expected energy by sampling N states where the two set spins are fixed (for both -1 and 1 for the second spin) -> use better for that spin
-5. ...
-"""
-
 
 class ConditionalExpectation:
     def __init__(self, wandb_id, n_different_random_node_features):
@@ -629,50 +619,6 @@ if __name__ == "__main__":
     print('\n###\n')
     #CE.run_time(p=None)
 
-
-
-    # ps = np.linspace(0.25, 1, 10)
-    #
-    # APR_dict = {}
-    #
-    # rel_errors_CE = []
-    # APRs_CE = []
-    # for p in ps:
-    #     print(f"\np: {p}")
-    #     rel_error_CEs = []
-    #     APR_CEs = []
-    #     CE = ConditionalExpectation(wandb_id=wandb_id, n_different_random_node_features=8)
-    #     dataset_name = f"{CE.dataset_name}_p_{p}"
-    #     CE.init_dataset(dataset_name=dataset_name)
-    #
-    #     results, rel_error_CE, rel_error_OG_mean, APR_CE, APR_OG_mean = CE.run(p=p)
-    #     rel_errors_CE.append(rel_error_CE)
-    #     APRs_CE.append(APR_CE)
-    #
-    # print("\n")
-    # print(f"rel_error: {np.mean(rel_errors_CE)}")
-    # print(f"APR: {np.mean(APRs_CE)}")
-
-    #     seeds = np.arange(0, 12)
-    #     for s in seeds:
-    #         # print(f"\n\n ## now running seed {s}:\n")
-    #         CE.seed = s
-    #         results, rel_error_CE, rel_error_OG_mean, APR_CE, APR_OG_mean = CE.run(p=p)
-    #         rel_error_CEs.append(rel_error_CE)
-    #         APR_CEs.append(APR_CE)
-    #         print(f"{np.round(np.mean(APR_CEs), 4)} \\pm {np.std(APR_CEs) / np.sqrt(len(APR_CEs))}")
-    #     APR_dict[f'{p}'] = APR_CEs
-    #
-    #     print('\n\n############')
-    #     print(f"mean rel_error* : {np.mean(rel_error_CEs)};   std rel_error* : {np.std(rel_error_CEs)/np.sqrt(len(rel_error_CEs))}")
-    #     print(f"mean APR* : {np.mean(APR_CEs)};   std rel_error* : {np.std(APR_CEs)/np.sqrt(len(APR_CEs))}")
-    #     print('############\n\n')
-    #
-    #
-    # for p in ps:
-    #     APR_CEs = APR_dict[f"{p}"]
-    #     print(f"p: {p}; \tmean APR* : {np.mean(APR_CEs)}; \tstd rel_error* : {np.std(APR_CEs) / np.sqrt(len(APR_CEs))}")
-    #     print(f"{np.round(np.mean(APR_CEs), 4)} \\pm {np.std(APR_CEs) / np.sqrt(len(APR_CEs))}")
 
 
 
