@@ -2,12 +2,11 @@ from Gurobi import GurobiSolver
 import os
 import numpy as np
 from matplotlib import pyplot as plt
-from loadGraphDatasets.DatasetGenerator import Generator
+from .DatasetGenerator import Generator
 from omegaconf import OmegaConf
 from unipath import Path
 from torch.utils.data import DataLoader
 import pickle
-from loadGraphDatasets.jraph_Dataloader import JraphSolutionDataset
 from jraph_utils import utils as jutils
 from GreedyAlgorithms import GreedyMIS
 from tqdm import tqdm

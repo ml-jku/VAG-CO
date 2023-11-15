@@ -1,9 +1,0 @@
-
-
-python PPO_configuration.py --IsingMode RB_iid_100 --temps 0.05 --N_anneal 2000 --GPUs 1 --time_horizon 20 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 4 --n_sample_spins 5 --GNN_backbone MPNN --project_name no_pruning_cos_MPNN --no-pruning
-
-
-
-
-IMDB Binary
-python PPO_configuration.py --IsingMode IMDB-BINARY --temps 0.2 --N_anneal 2000 4000 --GPUs 1 2 --time_horizon 10 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MVC --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 4 --n_sample_spins 5 --GNN_backbone MPNN --project_name no_pruning_cos_MPNN --no-pruning

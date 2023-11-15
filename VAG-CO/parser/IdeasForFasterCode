@@ -1,7 +1,0 @@
-
-
-- make EnergyGraphs directed and adapt the GNN code accordingly
-- move BFS and initial igraph -> Jgraph conversion to Dataloader
-- remove selfloops and use moving average for normalization instead
-- maybe make forward passes on CPU
-- when normlization is removed edges and nodes could be simply integer arrays

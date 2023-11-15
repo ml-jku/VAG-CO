@@ -2,14 +2,14 @@ import pickle
 from torch.utils.data import Dataset
 import numpy as np
 from jraph_utils import utils as jutils
+import os
 
 class TWITTER(Dataset):
     def __init__(self, cfg,seed = 0, mode = "train"):
         self.mode = mode
         self.random_node_features = cfg["Ising_params"]["n_rand_nodes"]
-        self.ordering = cfg["Ising_params"]["ordering"]
 
-        path = "/system/user/publicwork/sanokows/PPO_CombOpt_SpinDrop/loadGraphDatasets/tmp/TWITTER/TWITTER_SNAP_2.p"
+        path = os.getcwd() + "/loadGraphDatasets/tmp/TWITTER/TWITTER_SNAP_2.p"
         file = open(path, 'rb')
         self.data = pickle.load(file)
 

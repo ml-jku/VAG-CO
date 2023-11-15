@@ -1,0 +1,9 @@
+python PPO_configuration.py --IsingMode TWITTER --temps 0.1 0.2 --N_anneal 4000 --GPUs 0 1 --time_horizon 35 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 10 --mini_Nb 10 --mini_Hb 10 --EnergyFunction MaxCl_compl --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 
+
+python PPO_configuration.py --IsingMode TWITTER --temps 0.1 0.2 --N_anneal 4000 --GPUs 0 1 --time_horizon 25 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 6 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MaxCl_compl --n_val_workers 30 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 
+
+
+python PPO_configuration.py --IsingMode TWITTER --temps 0.2 --N_anneal 4000 --GPUs 3 --time_horizon 35 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 6 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MaxCl_compl_no_loops --n_val_workers 60 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 5 
+
+
+python PPO_configuration.py --IsingMode TWITTER --temps 0.2 0.5 --N_anneal 8000 --GPUs 1 --time_horizon 35 --batch_epochs 2 --AnnealSchedule cosine_frac --num_hidden_neurons 40 --mini_Sb 6 --mini_Nb 6 --mini_Hb 10 --EnergyFunction MaxCl_compl --n_val_workers 60 --encode_node_features 40 --encode_edge_features 30 --lr 0.0005 --message_nh 30 --seed 123 --n_GNN_layers 3 --n_sample_spins 6 --GNN_backbone GIN_skip --masking True 

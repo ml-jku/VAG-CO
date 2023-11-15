@@ -1,13 +1,9 @@
-import jax.random
 import torch
-from torch.utils.data import DataLoader
 import os
 from torch_geometric.datasets import TUDataset
 from torch_geometric.loader import DataLoader as pygDataLoader
 import numpy as np
 from matplotlib import pyplot as plt
-import jax.numpy as jnp
-import jraph
 import pickle
 ### TODO add shuffled data for data augmentation?
 

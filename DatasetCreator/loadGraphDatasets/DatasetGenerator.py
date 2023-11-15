@@ -1,18 +1,10 @@
-import jax.random
-import torch
 from torch.utils.data import DataLoader
 import os
 from torch_geometric.datasets import TUDataset
-from torch_geometric.loader import DataLoader as pygDataLoader
 import numpy as np
-from matplotlib import pyplot as plt
 import jax.numpy as jnp
 import jraph
-from unipath import Path
-from omegaconf import OmegaConf
 from jraph_utils import utils as jutils
-from loadGraphDatasets.jraph_Dataloader import JraphSolutionDataset, RRGDataset
-from utils import string_utils
 from loadGraphDatasets.loadTwitterGraph import TWITTER
 
 
@@ -55,13 +47,10 @@ class Generator:
         self.collate_from_torch_to_jraph_fn = lambda data: self.collate_from_torch_to_jraph(data, add_padded_node=True,
                                                                                   time_horizon=self.time_horizon)
 
-        if("RRG" not in self.dataset_name):
-            if(self.dataset_name != "TWITTER"):
-                self.init_TUDataset()
-            else:
-                self.init_TWITTERDataset()
+        if(self.dataset_name != "TWITTER"):
+            self.init_TUDataset()
         else:
-            self.init_RRGDataset()
+            self.init_TWITTERDataset()
 
 
     def init_TUDataset(self):
@@ -106,26 +95,6 @@ class Generator:
         self.pyg_val_dataset = self.dataset[self.val_dataset_idxs]
         self.pyg_test_dataset = self.dataset[self.test_dataset_idxs]
 
-
-    def init_RRGDataset(self):
-
-        ### TODO add normalisation factor
-        ### TODO add random node embeddings
-        integers = string_utils.separate_integers(self.dataset_name)
-        num_nodes = integers[0]
-        k = integers[1]
-        self.normalisation_factor = num_nodes
-
-        self.pyg_train_dataset = RRGDataset(self.cfg)
-
-        self.reset_collate_func = lambda data: jutils.collate_jraphs_to_horizon(data, self.time_horizon, self.random_node_features)
-        self.pyg_loader = iter(DataLoader(self.pyg_train_dataset, batch_size=1, shuffle=True, collate_fn=self.reset_collate_func))
-
-
-        self.jraph_dataloader = DataLoader(self.pyg_train_dataset, batch_size=self.batch_size, shuffle=True, collate_fn=self.reset_collate_func, num_workers=self.num_workers)
-        self.jraph_loader = iter(self.jraph_dataloader )
-
-        self.batched_graphs, self.graph_list = next(self.jraph_loader)
 
     def init_TWITTERDataset(self):
         self.reset_collate_func = lambda data: jutils.collate_jraphs_to_horizon(data, self.time_horizon, self.random_node_features)

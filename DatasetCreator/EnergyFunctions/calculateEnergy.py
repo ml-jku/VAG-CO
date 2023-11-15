@@ -1,4 +1,4 @@
-from EnergyFunctions import MaxCut, MIS
+from . import MaxCut, MIS
 
 def calc(H_graph,spins,EnergyFunction):
     if (EnergyFunction == "MaxCut" or EnergyFunction == "WeightedMaxCut"):

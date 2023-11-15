@@ -1,7 +1,7 @@
 import numpy as np
 import itertools
 import scipy.sparse as sp
-from loadGraphDatasets.RB_graphs import csp_utils
+from . import csp_utils
 import random
 import networkx as nx
 

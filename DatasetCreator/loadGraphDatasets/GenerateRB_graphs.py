@@ -130,10 +130,10 @@ def generateRB(mode = "val", n_train_graphs = 2000,seed = 123, RB_size = "200", 
                 n = np.random.randint(20, 25)
                 k = np.random.randint(5, 12)
             elif RB_size == "large":
+                solve = False
                 min_n, max_n = 800, 1200
                 n = np.random.randint(40, 55)
                 k = np.random.randint(20, 25)
-
             if(RB_size == "small" or RB_size == "large"):
                 if(take_p == None):
                     p = np.random.uniform(0.3, 1.0)
@@ -161,45 +161,56 @@ def generateRB(mode = "val", n_train_graphs = 2000,seed = 123, RB_size = "200", 
 
         H_graph = jutils.from_igraph_to_jgraph(g)
 
-        if(solve == True):
+        if(solve):
             if(EnergyFunction == "MVC"):
                 _, Energy, solution, runtime = GurobiSolver.solveMVC_as_MIP(H_graph, time_limit=time_limit)
-                # _, c_Energy, c_solution, runtime = GurobiSolver.solveMVC_continuous(H_graph)
-                #
-                # print("Energies", Energy, c_Energy)
-                # print("solutions", solution)
-                # print(c_solution)
-                # print("here")
-                # print("Gurobi Engery", Energy)
-                # print("test",n*k-n, n,k, "p", p)
-                # print("num_nodes", g.vcount(), Energy/(n*k-n))
+
             elif(EnergyFunction == "MIS"):
                 _, Energy, solution, runtime = GurobiSolver.solveMIS_as_MIP(H_graph, time_limit=time_limit)
-                #Energy = -n
-                #solution = np.zeros((num_nodes))
-                #runtime = None
-                #print("Gurobi Engery", Energy, Energy_test, len(isolated_nodes))
-                # print("test", n * k - n, n, k, "p", p)
-                # print("num_nodes", g.vcount(), Energy / (n * k - n))
+                print("solution", p, "Model ", -n, "Gurobi" , Energy)
+
+                # import networkx as nx
+                # import matplotlib.pyplot as plt
+
+                # Create a graph
+                # plt.title(f"p {p}")
+                # G = nx.Graph()
+                #
+                # # Add nodes with attributes (0 or 1)
+                # node_attributes = {idx: num for idx, num in enumerate(solution)}
+                # G.add_nodes_from(node_attributes.keys())
+                #
+                # edges = [(s,r) for s,r in zip(H_graph.senders, H_graph.receivers)]
+                # G.add_edges_from(edges)
+                #
+                # # Define colors based on node attributes
+                # node_colors = ['red' if node_attributes[node] == 1 else 'blue' for node in G.nodes]
+                #
+                # # Draw the graph
+                # pos = nx.spring_layout(G)  # You can use other layout algorithms as well
+                # nx.draw(G, pos, with_labels=True, node_color=node_colors, node_size=700, font_size=10,
+                #         font_color='white')
+                # # Show the plot
+                # plt.show()
+
+
             elif(EnergyFunction == "MaxCl"):
                 H_graph = jutils.from_igraph_to_jgraph(g)
                 H_graph_compl = jutils.from_igraph_to_jgraph(g.complementer(loops=False))
                 _, Energy, solution, runtime = GurobiSolver.solveMIS_as_MIP(H_graph_compl, time_limit=time_limit)
 
-                # print("MaxCl", Energy)
             elif(EnergyFunction == "MaxCut"):
 
                 _, Energy, boundEnergy, solution, runtime = GurobiSolver.solveMaxCut(H_graph, time_limit=time_limit, bnb = False, verbose=False)
 
-                # print("MaxCut bound", Energy)
-                # print("MaxCut Gurobi", boundEnergy)
                 solutions["upperBoundEnergies"].append(boundEnergy)
-                # _, GurobiCut, upCut, MC_Energy, solution, runtime = GurobiSolver.solveMaxCut_as_IP(H_graph, time_limit=time_limit,
-                #                                                                                 bnb=False, verbose=False)
-                # print("MC Energy", MC_Energy)
-                # print("MaxCut bound", upCut)
-                # print("MaxCut Gurobi", GurobiCut)
-                # print("pass")
+        else:
+            if(EnergyFunction == "MIS"):
+               Energy = -n
+            else:
+                ValueError("Other Energy Functions that are not solved with gurobi are not implmented yet")
+
+
 
 
         solutions["Energies"].append(Energy)
@@ -210,17 +221,6 @@ def generateRB(mode = "val", n_train_graphs = 2000,seed = 123, RB_size = "200", 
         solutions["runtimes"].append(runtime)
         solutions["p"].append(p)
 
-
-    # graph_sizes = np.array([sol["graph_size"] for sol in solutions[""]])
-    # num_edges = np.array([sol["num_edges"] for sol in solutions])
-    # density = num_edges/(graph_sizes*(graph_sizes-1)/2)
-    # mean_num_graphs = np.mean(graph_sizes)
-    # print(mean_num_graphs)
-
-    # plt.figure()
-    # plt.title(dataset_name + "_" + mode)
-    # plt.plot(density, graph_sizes, "x")
-    # plt.show()
     if(solve):
         newpath = path + f"/loadGraphDatasets/DatasetSolutions/no_norm/{dataset_name}"
         if not os.path.exists(newpath):

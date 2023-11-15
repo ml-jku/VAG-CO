@@ -1,7 +1,7 @@
 import jax
 import numpy as np
 import jax.tree_util as tree
-from EnergyFunctions import calculateEnergy
+from ..EnergyFunctions import calculateEnergy
 ### TODO implement greedy MaxCut where we randomly sample conifg and randomly flip if improvement
 
 def AutoregressiveGreedy_old(H_graph):
