@@ -16,8 +16,6 @@ parser.add_argument('--modes', default=["val", "train", "test"], type = str, hel
 parser.add_argument('--licence', default="yes", type = str, help='use licence or not')
 args = parser.parse_args()
 
-### TODO add TWITTER ZIP file, add init in modules
-
 if(__name__ == "__main__"):
     ### TODO first set up your gurobi licence before running this code. Otherwise large CO Problem Instances cannot be solved by gurobi!
     import os
