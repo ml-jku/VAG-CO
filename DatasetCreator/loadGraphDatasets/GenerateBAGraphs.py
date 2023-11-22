@@ -7,7 +7,7 @@ def generateRB(mode = "val", n_train_graphs = 4000,seed = 123, m = 4, RB_size = 
     import pickle
     from unipath import Path
     import os
-    from DatasetCreator.loadGraphDatasets.Gurobi import GurobiSolver
+    from DatasetCreator.Gurobi import GurobiSolver
     from ..jraph_utils import utils as jutils
 
     np.random.seed(seed)

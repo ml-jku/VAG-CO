@@ -3,7 +3,7 @@ import itertools
 import random
 import igraph as ig
 from collections import Counter
-from loadGraphDatasets.RB_graphs import generate_xu_instances
+from .RB_graphs import generate_xu_instances
 from tqdm import tqdm
 
 def generate_instance(n, k, r, p):
@@ -61,7 +61,6 @@ def generateRB(mode = "val", n_train_graphs = 2000,seed = 123, RB_size = "200", 
     import pickle
     from unipath import Path
     import os
-    from matplotlib import pyplot as plt
     from Gurobi import GurobiSolver
     from jraph_utils import utils as jutils
 
@@ -207,6 +206,8 @@ def generateRB(mode = "val", n_train_graphs = 2000,seed = 123, RB_size = "200", 
         else:
             if(EnergyFunction == "MIS"):
                Energy = -n
+               solution = None
+               runtime = None
             else:
                 ValueError("Other Energy Functions that are not solved with gurobi are not implmented yet")
 
@@ -221,13 +222,13 @@ def generateRB(mode = "val", n_train_graphs = 2000,seed = 123, RB_size = "200", 
         solutions["runtimes"].append(runtime)
         solutions["p"].append(p)
 
-    if(solve):
-        newpath = path + f"/loadGraphDatasets/DatasetSolutions/no_norm/{dataset_name}"
-        if not os.path.exists(newpath):
-            os.makedirs(newpath)
 
-        save_path = path + f"/loadGraphDatasets/DatasetSolutions/no_norm/{dataset_name}/{mode}_{EnergyFunction}_seed_{seed}_solutions.pickle"
-        pickle.dump(solutions, open(save_path, "wb"))
+    newpath = path + f"/loadGraphDatasets/DatasetSolutions/no_norm/{dataset_name}"
+    if not os.path.exists(newpath):
+        os.makedirs(newpath)
+
+    save_path = path + f"/loadGraphDatasets/DatasetSolutions/no_norm/{dataset_name}/{mode}_{EnergyFunction}_seed_{seed}_solutions.pickle"
+    pickle.dump(solutions, open(save_path, "wb"))
 
     return solutions["densities"], solutions["graph_sizes"]
 
